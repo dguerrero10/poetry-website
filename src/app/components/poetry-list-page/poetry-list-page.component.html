@@ -1,0 +1,44 @@
+<div class="main-container">
+  <div class="poetry-banner">
+    <div class="mat-display-1" id="poetry-banner-title">
+      EXPLORE POEMS <span><img class="title-img pulse" style="margin-bottom: -25px;"
+          src="../../../assets/images/fashion.svg"></span>
+    </div>
+  </div>
+  <mat-tab-group>
+    <mat-tab label="Page 1">
+      <mat-list role="list" *ngFor="let poem of poems$ | async; let i = index">
+        <div *ngIf="i < 8">
+          <mat-list-item role="listitem">
+            <div mat-line>
+              <div class="mat-h1 poem-title">
+                <a class="poem-link" [routerLink]="['/poetry-list-page', poem.poem_title]">{{poem.poem_title}}</a>
+              </div>
+            </div>
+            <div mat-line>
+              <p class="poem-preview-txt">{{poem.poem_preview}}
+              </p>
+            </div>
+          </mat-list-item>
+          <hr>
+        </div>
+      </mat-list>
+    </mat-tab>
+    <mat-tab label="Page 2">
+      <mat-list role="list" *ngFor="let poem of poems$ | async | slice:8 let i = index">
+        <mat-list-item role="listitem">
+          <div mat-line>
+            <div class="mat-h1 poem-title">
+              <a class="poem-link" [routerLink]="['/poetry-list-page', poem.poem_title]">{{poem.poem_title}}</a>
+            </div>
+          </div>
+          <div mat-line>
+            <p class="poem-preview-txt">{{poem.poem_preview}}
+            </p>
+          </div>
+        </mat-list-item>
+        <hr>
+    </mat-list>
+    </mat-tab>
+    <mat-tab label="Page 3"> Content 3 </mat-tab>
+  </mat-tab-group>

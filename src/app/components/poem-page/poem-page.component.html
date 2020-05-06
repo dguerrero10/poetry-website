@@ -1,0 +1,25 @@
+<div class="main-container">
+    <div id="back-btn">
+        <a routerLink="/poetry-list-page">
+            <span class="material-icons">arrow_back_ios</span>
+            <span>View other poems</span>
+        </a>
+    </div>
+    <div class="poem-container" *ngIf="poem$ | async as poem">
+        <div class="mat-display-2" id="poem-title">
+            {{poem.poem_title}}
+        </div>
+        <div id="me">By DAVID GUERRERO</div>
+        <div class="poem-txt-container">
+            {{poem.poem_text}}
+        </div>
+        <hr>
+        <div class="social-media">
+            <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button"
+                data-show-count="false" target="_blank">
+                <img class="twitter-icon" src="../../../assets/images/twitter.svg" alt="">
+            </a>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </div>
+    </div>
+</div>

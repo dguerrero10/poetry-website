@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "poetry-website"
+    }
+  },
+  "defaultProject": "poetry-website",
+  "cli": {
+    "analytics": "57d172bc-0be8-48dd-a190-6cc00e9abff9"
+  }
 }

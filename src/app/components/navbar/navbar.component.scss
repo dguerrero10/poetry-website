@@ -1,0 +1,27 @@
+.name-toolbar {
+    display: flex;
+    justify-content: center;
+    background: rgb(14, 14, 14);
+    height: 150px;
+    text-shadow: 10px 10px white;
+}
+
+#me {
+    color: whitesmoke;
+    font-family: "Special Elite", cursive; 
+    text-align: center;
+}
+
+.mat-toolbar-row {
+    display: flex;
+    justify-content: center;
+}
+
+a {
+    color: whitesmoke;
+    text-align: center;
+    text-shadow: none;
+    font-size: 14px;
+    letter-spacing: 3px;
+    font-weight: bold;
+}
