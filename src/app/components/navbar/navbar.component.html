@@ -1,4 +1,4 @@
-<mat-toolbar class="name-toolbar">
+<mat-toolbar class="name-toolbar" *ngIf="navbarService.visible">
     <span><div id="me">David Guerrero</div></span>
     <mat-toolbar-row>
             <a mat-button [routerLink]="'/home-page'">HOME</a>

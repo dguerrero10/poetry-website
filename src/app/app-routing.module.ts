@@ -16,6 +16,10 @@ const routes: Routes = [
     loadChildren: () => import('../app/components/poetry-list-page/poetry-list-page.module').then(mod => mod.PoetryListPageModule)
   },
   {
+    path: 'n2edmhxuyweo2sl2w5no6',
+    loadChildren: () => import('../app/components/n2edmhxuyweo2sl2w5no6/n2edmhxuyweo2sl2w5no6.module').then(mod => mod.N2edmhxuyweo2sl2w5no6Module)
+  },
+  {
     path: '',
     redirectTo: '/home-page',
     pathMatch: 'full'

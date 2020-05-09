@@ -1,0 +1,22 @@
+.typewriter-container {
+    width: 100%;
+    min-height: 100vh;
+    background: rgb(14, 14, 14);
+    display: flex;
+    justify-content: center;
+  }
+  
+  .txt-container {
+    display: flex;
+    justify-content: center;
+    width: 75%;
+    margin-top: 5%;
+  }
+  
+  #typewriter-txt {
+    font-family: "Special Elite", cursive;
+    color: whitesmoke;
+    margin: 0;
+  }
+  
+  
