@@ -10,7 +10,7 @@
           {{typewriter_display}}
         </div>
     </div>
-    <div class="form-container">
+    <div *ngIf="!loggedIn" class="form-container">
         <form class="contact-form">
             <mat-form-field class="form-field">
                 <input matInput placeholder="Name">

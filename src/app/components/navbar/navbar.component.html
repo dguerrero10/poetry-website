@@ -1,8 +1,12 @@
 <mat-toolbar class="name-toolbar" *ngIf="navbarService.visible">
-    <span><div id="me">David Guerrero</div></span>
-    <mat-toolbar-row>
-            <a mat-button [routerLink]="'/home-page'">HOME</a>
-            <a mat-button [routerLink]="'/poetry-list-page'">POEMS</a>
-            <a mat-button [routerLink]="'/contact-page'">CONTACT ME</a>
-    </mat-toolbar-row>
+        <mat-toolbar-row>
+                <span>
+                        <div id="me">David Guerrero</div>
+                </span>
+        </mat-toolbar-row>
+        <mat-toolbar-row>
+                <a mat-button [routerLink]="'/home-page'">HOME</a>
+                <a mat-button [routerLink]="'/poetry-list-page'">POEMS</a>
+                <a mat-button [routerLink]="'/contact-page'">CONTACT ME</a>
+        </mat-toolbar-row>
 </mat-toolbar>

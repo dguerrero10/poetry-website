@@ -43,16 +43,25 @@ mat-form-field {
     text-align: center;
 }
 
-.watching-txt {
-    text-align: center;
-    font-family: 'Noto Serif', serif;
+small {
+  letter-spacing: 1px;
+  color: rgb(37, 36, 36);
+}
+
+.transition-screen {
+  height: 100vh;
+  background: black;
+  transition: background-color .1s linear;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @-webkit-keyframes fadeInDown {
   from {
     opacity: 0;
-    -webkit-transform: translate3d(0, 100%, 0);
-    transform: translate3d(0, 100%, 0);
+    -webkit-transform: translate3d(0, 0, 100%);
+    transform: translate3d(0, 0, 100%);
   }
 
   to {
@@ -65,8 +74,8 @@ mat-form-field {
 @keyframes fadeInDown {
   from {
     opacity: 0;
-    -webkit-transform: translate3d(0, 100%, 0);
-    transform: translate3d(0, 100%, 0);
+    -webkit-transform: translate3d(0, 0, 100%);
+    transform: translate3d(0, 0, 100%);
   }
 
   to {
@@ -74,6 +83,59 @@ mat-form-field {
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
   }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+@-moz-keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+@-o-keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+@-ms-keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+.fadeIn {
+  animation: fadeIn ease 1s;
+  -webkit-animation: fadeIn ease 1s;
+  -moz-animation: fadeIn ease 1s;
+  -o-animation: fadeIn ease 1s;
+  -ms-animation: fadeIn ease 1s;
 }
 
 .fadeInDown {

@@ -1,0 +1,54 @@
+<div [ngClass]="{'transition-screen': loggedIn === true}">
+    <div *ngIf="loggedIn">
+        <img class="fadeIn" id="eye-gif" 
+        src="../../../../../assets/images/animated-eye.gif" alt="">
+    </div>
+    <div *ngIf="!loggedIn">
+        <div *ngIf="!showEye" class="img-container">
+            <img class="fadeIn" src="../../../../assets/images/closed-eye.svg" alt="">
+        </div>
+        <div *ngIf="showEye" class="img-container">
+            <img src="../../../../assets/images/opened-eye.svg" alt="">
+        </div>
+    </div>
+    <div class="main-container" *ngIf="!loggedIn">
+        <div class="login-container">
+            <mat-form-field>
+                <mat-label>Enter your full name</mat-label>
+                <input #boxName matInput (keyup)="onKeyName(boxName.value)">
+            </mat-form-field>
+            
+            <form [formGroup]="loginFormControlChelsea" *ngIf="chelseaValdez" class="fadeInDown"
+                (ngSubmit)="onSubmitChelsea()">
+                <mat-form-field>
+                    <mat-label>What's the name of the city in Chile where we stayed?</mat-label>
+                    <input matInput formControlName="secretQuestionChelsea">
+                    <mat-error *ngIf="!loginFormControlChelsea.controls['secretQuestionChelsea'].valid">
+                        {{getErrorsChelsea('secretQuestionChelsea')}}
+                    </mat-error>
+                </mat-form-field>
+                <small>Capitlization matters.</small>
+                <div class="btn-container">
+                    <button id="enter-btn" mat-raised-button type="submit">Enter</button>
+                </div>
+            </form>
+
+            <form [formGroup]="loginFormControlAmanda" *ngIf="amandaWinkle" class="fadeInDown"
+                (ngSubmit)="onSubmitAmanda()">
+                <mat-form-field>
+                    <mat-label>What's the name of the poem I wrote for your sister?</mat-label>
+                    <input matInput formControlName="secretQuestionAmanda">
+                    <mat-error *ngIf="!loginFormControlAmanda.controls['secretQuestionAmanda'].valid">
+                        {{getErrorsAmanda('secretQuestionAmanda')}}
+                    </mat-error>
+                </mat-form-field>
+                <small>Capitlization matters.</small>
+                <div class="btn-container">
+                    <button id="enter-btn" mat-raised-button type="submit">Enter</button>
+                </div>
+            </form>
+            <div *ngIf="amandaWinkle" class="mat-h1 message">How are you babe.</div>
+            <div *ngIf="chelseaValdez" class="mat-h1 message">It's been awhile.</div>
+        </div>
+    </div>
+</div>

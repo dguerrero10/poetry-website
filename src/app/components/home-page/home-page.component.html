@@ -6,101 +6,30 @@
 <div class="main-container">
     <div class="poetry-banner">
         <div class="mat-display-1" id="poetry-banner-title">
-           FEATURED POEMS <span><img class="title-img rubberBand" src="../../../assets/images/poetry_scroll.svg.svg"></span>
+            FEATURED POEMS <span><img class="title-img rubberBand"
+                    src="../../../assets/images/poetry_scroll.svg.svg"></span>
         </div>
     </div>
-    <div class="flex-grid">
-        <div class="poem-col">
-            <div class="poem-card">
+    <div>
+        <div class="flex-grid">
+            <div class="poem-col" *ngFor="let featuredPoem of featuredPoems$ | async; let i = index">
                 <div class="poem-title mat-h1">
-                    <a class="poem-link">
-                        Love and Entanglement
+                    <a class="poem-link" [routerLink]="['/poetry-list-page', featuredPoem.poem_title]">
+                        {{featuredPoem.poem_title}}
                     </a>
                 </div>
                 <div class="poem-preview">
                     <p class="poem-preview-txt">
-                        I am here at one point, affected by you,
-                        wherever you are
-
-                        the great distance separating us,
-                        the memories, in a more quiet place --
-                        it has been a few summers
+                        {{featuredPoem.poem_preview}}
                     </p>
-
-                    <p class="poem-preview-txt">
-                        & still I wonder when you hear my name
-                        or stumble upon a picture,
-                        are you brought to action: a thought,
-                        a movement closer to me?
-
-                        somehow I still love you, somehow,
-                        there is still a pain linking us...
-                    </p>
+                    <div class="read-more-container">
+                        <a class="read-more" [routerLink]="['/poetry-list-page', featuredPoem.poem_title]">Read More</a>
+                    </div>
                 </div>
-                <a class="read-more" href="">Read More</a>
-            </div>
-        </div>
-        <div class="poem-col">
-            <div class="poem-card">
-                <div class="poem-title mat-h1">
-                    <a class="poem-link" href="">
-                        A Child's Belief
-                    </a>
-                </div>
-                <div class="poem-preview">
-                    <p class="poem-preview-txt">
-                        I am here at one point, affected by you,
-                        wherever you are
-
-                        the great distance separating us,
-                        the memories, in a more quiet place --
-                        it has been a few summers
-                    </p>
-
-                    <p class="poem-preview-txt">
-                        & still I wonder when you hear my name
-                        or stumble upon a picture,
-                        are you brought to action: a thought,
-                        a movement closer to me?
-
-                        somehow I still love you, somehow,
-                        there is still a pain linking us...
-                    </p>
-                </div>
-                <a class="read-more" href="">Read More</a>
-            </div>
-        </div>
-        <div class="poem-col">
-            <div class="poem-card">
-                <div class="poem-title mat-h1">
-                    <a class="poem-link" href="">
-                        Because I Love You
-                    </a>
-                </div>
-                <div class="poem-preview">
-                    <p class="poem-preview-txt">
-                        I am here at one point, affected by you,
-                        wherever you are
-
-                        the great distance separating us,
-                        the memories, in a more quiet place --
-                        it has been a few summers
-                    </p>
-
-                    <p class="poem-preview-txt">
-                        & still I wonder when you hear my name
-                        or stumble upon a picture,
-                        are you brought to action: a thought,
-                        a movement closer to me?
-
-                        somehow I still love you, somehow,
-                        there is still a pain linking us...
-                    </p>
-                </div>
-                <a class="read-more" href="">Read More</a>
             </div>
         </div>
     </div>
+
     <div class="btn-container">
         <button mat-raised-button id="browse-btn" routerLink="/poetry-list-page">Browse All Poems</button>
     </div>

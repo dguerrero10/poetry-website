@@ -1,6 +1,6 @@
 .typewriter-container {
   width: 100%;
-  min-height: 300px;
+  min-height: 250px;
   background: rgb(14, 14, 14);
   display: flex;
   justify-content: center;
@@ -21,7 +21,7 @@
 }
 
 .main-container {
-  margin: 2% 8%;
+  margin: 2% 6%;
 }
 
 .poetry-banner {
@@ -52,10 +52,10 @@
 }
 .poem-col {
   flex: 1;
-  min-height: 300px;
   text-align: center;
   border-right: 2px solid whitesmoke;
   border-left: 2px solid whitesmoke;
+  width: 100%;
 }
 
 .poem-title {
@@ -70,9 +70,14 @@
 
 .poem-preview-txt {
   font-family: 'Noto Serif', serif;
-  line-height: 150%;
+  line-height: 250%;
   font-weight: 400px;
   font-size: 18px;
+  text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-line-clamp: 3; /* number of lines to show */
+   -webkit-box-orient: vertical;
+   overflow: hidden;
 }
 
 .read-more {
@@ -98,6 +103,9 @@
 .poem-link {
     color: black;
     text-decoration: none; 
+    transition: color 0.2s linear;
+    -webkit-transition: color 0.2s linear;
+    -moz-transition: color 0.2s linear;
 }
 
 .poem-link:hover {

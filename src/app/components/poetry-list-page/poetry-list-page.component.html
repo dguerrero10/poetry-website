@@ -9,7 +9,7 @@
     <mat-tab label="Page 1">
       <mat-list role="list" *ngFor="let poem of poems$ | async; let i = index">
         <div *ngIf="i < 8">
-          <mat-list-item role="listitem">
+          <mat-list-item role="listitem" class="fadeIn">
             <div mat-line>
               <div class="mat-h1 poem-title">
                 <a class="poem-link" [routerLink]="['/poetry-list-page', poem.poem_title]">{{poem.poem_title}}</a>
@@ -25,7 +25,7 @@
       </mat-list>
     </mat-tab>
     <mat-tab label="Page 2">
-      <mat-list role="list" *ngFor="let poem of poems$ | async | slice:8 let i = index">
+      <mat-list role="list" *ngFor="let poem of poems$ | async | slice:8 let i = index;">
         <mat-list-item role="listitem">
           <div mat-line>
             <div class="mat-h1 poem-title">
@@ -40,5 +40,25 @@
         <hr>
     </mat-list>
     </mat-tab>
-    <mat-tab label="Page 3"> Content 3 </mat-tab>
+    <mat-tab *ngIf="chelseaLoggedIn" label="Page 3">
+      <mat-list role="list" *ngFor="let secretPoem of secretPoems$ | async; let i = index">
+        <div *ngIf="secretPoem.poem_title === 'For Chelsea'">
+          <mat-list-item role="listitem">
+            <div mat-line>
+              <div class="mat-h1 poem-title">
+                <a class="poem-link" [routerLink]="['/poetry-list-page', secretPoem.secret_poem_id]">{{secretPoem.poem_title}}</a>
+              </div>
+            </div>
+            <div mat-line>
+              <p class="poem-preview-txt">{{secretPoem.poem_preview}}
+              </p>
+            </div>
+          </mat-list-item>
+          <hr>
+        </div>
+      </mat-list>
+    </mat-tab>
+    <mat-tab *ngIf="amandaLoggedIn" label="Page 3">
+      Hello Amanda
+    </mat-tab>
   </mat-tab-group>

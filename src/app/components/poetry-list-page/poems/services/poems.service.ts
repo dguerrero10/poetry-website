@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/auth/auth.service';
+import { GenerateIdService } from 'src/app/components/hidden-pages/services/generate-id.service';
 
 @Injectable({
   providedIn: 'root'
@@ -797,23 +799,56 @@ export class PoemService {
   saying nothing, 
   listening only to the sound 
   of each other breathing.`
+    ),
+  ];
+
+  _secretPoems: Poem[] = [
+    new Poem(
+      'For Chelsea',
+      this.getPreview('Here is a poem for you'),
+      'Here is a poem for you',
+      this.generateIdService.generateId() + '-Chelsea'
     )
   ];
 
   getPreview(poem: string) {
-    this.poem_preview = poem.substring(0, 95)
+    this.poem_preview = poem.substring(0, 135)
     return this.poem_preview + "..."
   }
 
-  constructor() { }
+  // To get random poems
+  shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array
+}
+
+  constructor(private generateIdService: GenerateIdService) { }
 
   getPoems(): Observable<Poem[]> {
     return of(this._poems);
+  }
+
+  getFeaturedPoems(): Observable<Poem[]> {
+    return of(this.shuffleArray(this._poems).slice(0,3))
   }
 
   getPoem(poem_title: string) {
     return this.getPoems().pipe(
       map((_poems: Poem[]) => _poems.find(poem => poem.poem_title === poem_title))
     );
+  }
+
+  getSecretPoems(): Observable<Poem[]> {
+    return of(this._secretPoems);
+  }
+
+  getSecretPoem(secret_poem_id: string) {
+    return this.getSecretPoems().pipe(
+      map((_secretPoems: Poem[]) => _secretPoems.find(secretPoem => secretPoem.secret_poem_id === secret_poem_id))
+    );
+    
   }
 }

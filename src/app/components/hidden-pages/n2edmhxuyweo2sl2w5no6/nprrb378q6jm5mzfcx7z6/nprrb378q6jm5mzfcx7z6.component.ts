@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { NavbarService } from '../../shared/navbar.service';
+import { NavbarService } from '../../../shared/navbar.service';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { ValidateAnswerChelsea, ValidateAnswerAmanda } from './validator/name.validator';
+import { AuthService } from 'src/app/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nprrb378q6jm5mzfcx7z6',
@@ -11,14 +13,18 @@ import { ValidateAnswerChelsea, ValidateAnswerAmanda } from './validator/name.va
 export class Nprrb378q6jm5mzfcx7z6Component implements OnInit {
   loginFormControlChelsea: FormGroup;
   loginFormControlAmanda: FormGroup;
+  loggedIn = false;
+  timeElapsed = false;
 
   showEye: boolean;
   values = "";
   chelseaValdez: boolean;
   amandaWinkle: boolean;
 
-  constructor(public navbarService: NavbarService,
-    private fb: FormBuilder) { }
+  constructor(private router: Router,
+              private authService: AuthService,
+              public navbarService: NavbarService,
+              private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.navbarService.hide();
@@ -40,14 +46,20 @@ export class Nprrb378q6jm5mzfcx7z6Component implements OnInit {
 
   onKeyName(value: string) {
     this.values += value;
-    if (this.values.includes('Chelsea Valdez')) {
+    if (value.toLowerCase() === "chelsea valdez" || value.toLowerCase() === 'chelsea gutierrez valdez') {
+      console.log("How are you Jau?")
       this.showEye = true;
       this.chelseaValdez = true;
       this.amandaWinkle = false;
     }
-    if (this.values.includes('Amanda Winkle')) {
+    if (value.toLowerCase() === 'amanda winkle' || value.toLowerCase() === 'amanda marie winkle') {
       this.showEye = true;
       this.amandaWinkle = true;
+      this.chelseaValdez = false;
+    }
+    if (value === "") {
+      this.showEye = false;
+      this.amandaWinkle = false;
       this.chelseaValdez = false;
     }
   }
@@ -75,12 +87,28 @@ export class Nprrb378q6jm5mzfcx7z6Component implements OnInit {
   onSubmitChelsea() {
     if (this.loginFormControlChelsea.invalid) {
       return;
-    }
+    } 
+    if (this.authService._chelseaAuthenticated === true) {
+      this.authService.logoutAmanda();
+    };
+    this.authService.loginChelsea();
+    this.loggedIn = true;
+    setTimeout(() => {
+      this.router.navigate(['/home-page'])
+    }, 3000);
   }
 
   onSubmitAmanda() {
     if (this.loginFormControlAmanda.invalid) {
       return;
     }
+    if (this.authService._chelseaAuthenticated === true) {
+      this.authService.logoutChelsea();
+    }
+    this.authService.loginAmanda();
+    this.loggedIn = true;
+    setTimeout(() => {
+      this.router.navigate(['/home-page'])
+    }, 3000);
   }
 }

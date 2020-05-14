@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-
 const routes: Routes = [
   {
     path: 'home-page',
@@ -16,8 +15,8 @@ const routes: Routes = [
     loadChildren: () => import('../app/components/poetry-list-page/poetry-list-page.module').then(mod => mod.PoetryListPageModule)
   },
   {
-    path: 'n2edmhxuyweo2sl2w5no6',
-    loadChildren: () => import('../app/components/n2edmhxuyweo2sl2w5no6/n2edmhxuyweo2sl2w5no6.module').then(mod => mod.N2edmhxuyweo2sl2w5no6Module)
+    path: ':generated_page_id_shakespeare',
+    loadChildren: () => import('../app/components/hidden-pages/n2edmhxuyweo2sl2w5no6/n2edmhxuyweo2sl2w5no6.module').then(mod => mod.N2edmhxuyweo2sl2w5no6Module)
   },
   {
     path: '',
@@ -30,4 +29,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes, {scrollPositionRestoration: 'enabled'})],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule { 
+}
