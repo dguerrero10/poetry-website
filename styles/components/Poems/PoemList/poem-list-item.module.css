@@ -1,0 +1,44 @@
+.poem-list__item {
+    cursor: pointer;
+    opacity: 0;
+    width: 100%;
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid #dfdfdf;;
+    display: flex;
+    flex-direction: column;
+    animation: fade-in .8s ease forwards;
+    transition: background-color .3s ease-in-out;
+}
+
+.poem-list__item:hover {
+    background-color: rgb(243, 243, 243);
+}
+
+.poem-list__item--title {
+    cursor: pointer;
+    font-size: 1.3em;
+    transition: color .3s ease-in-out;
+    margin-bottom: .5rem;
+    color: #131212;
+}
+
+.poem-list__item--row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.poem-list__item--content {
+    line-height: 1.5;
+    color: #383737;;
+}
+
+.poem-list__item--title:hover {
+    color: #e91c23;
+}
+
+@keyframes fade-in {
+    100% {
+        opacity: 1;
+    }
+}

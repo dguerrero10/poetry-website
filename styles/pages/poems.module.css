@@ -1,0 +1,44 @@
+.poems {
+    opacity: 0;
+    width: 100%;
+    margin-bottom: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: fade-in .8s ease forwards;
+}
+
+.poems__img-container {
+    overflow: hidden;
+    position: relative;
+    margin-top: 2rem;
+}
+
+.poems__header--wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: rgba(24, 23, 23, 0.787);
+    width: 100%;
+    position: absolute;
+    bottom: 3px;
+}
+
+.poems__header {
+    color: #fff;
+    margin-left: 2rem;
+    font-weight: 700;
+}
+
+.poems__container {
+    width: 80%;
+    min-width: 600px;
+    padding: 0 3rem;
+}
+
+@keyframes fade-in {
+    100% {
+        opacity: 1;
+    }
+}

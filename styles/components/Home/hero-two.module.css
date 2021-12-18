@@ -1,0 +1,58 @@
+.hero-two {
+    opacity: 0;
+    width: 100%;
+    padding: 4rem 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    border-bottom: 1px solid rgb(214, 210, 210);
+    animation: fade-in .8s ease forwards;     
+}
+
+.hero-two__container {
+    min-width: 600px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.hero-two__img-container {
+    overflow: hidden;
+    min-width: 500px;
+    max-width: 550px;
+    display: flex;
+    flex-direction: column;
+}
+
+.hero-two__text-container {
+    min-width: 500px;
+    max-width: 550px;
+    padding-left: 4rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.hero-two__header {
+    font-weight: 700;
+}
+
+.hero-two__text--content {
+    line-height: 1.7;
+}
+
+.painting-name {
+    font-style: italic;
+    font-weight: 600;
+    margin-right: 2px;
+}
+
+.painting-credit {
+    font-size: .8em;
+}
+
+@keyframes fade-in {
+    100% {
+        opacity: 1;
+    }
+}

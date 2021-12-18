@@ -1,0 +1,38 @@
+.poem-prev__item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 250px;
+    padding: 2rem;
+    border-left: 1px solid #dfdfdf;
+}
+
+.poem-prev__item--title {
+    cursor: pointer;
+    font-size: 1.3em;
+    color: #131212;
+    transition: color .3s ease-in-out;
+}
+
+.poem-prev__item--content {
+    line-height: 1.5;
+    color: #383737;
+}
+
+.poem-prev__item--link {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, 0);
+    text-decoration: underline;
+    font-weight: 600;
+    transition: color .3s ease-in-out;
+}
+
+.poem-prev__item--title:hover {
+    color: #e91c23;
+}
+
+.poem-prev__item--link:hover {
+    color: #e91c23;
+}

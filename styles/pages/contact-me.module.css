@@ -1,0 +1,22 @@
+.contact-me {
+    width: 100%;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.contact-me__img {
+    margin-top: 1px;
+    height: 100%;
+    background-image: url(../../public/assets/images/depression.png);
+    object-fit: contain;
+    background-size: cover;
+    background-position: top;
+}
+
+.contact-me__form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

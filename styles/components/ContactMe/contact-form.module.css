@@ -1,0 +1,47 @@
+.contact-form__container {
+    opacity: 0;
+    width: 60%;
+    min-width: 500px;
+    padding: 2.5rem;
+    margin: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    animation: fade-in .5s ease-in forwards;
+}
+
+.contact-form__header {
+    color: #131212;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-top: -1rem;
+    margin-bottom: 0;
+}
+
+.contact-form__para {
+    margin-top: .25rem;
+    margin-bottom: 2rem;
+    font-size: .8em;
+    color: #383737;
+}
+
+.contact-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-form__field {
+    width: 100%;
+    padding-bottom: 2rem;
+}
+
+.contact-form__input {
+    width: 100%;
+}
+
+@keyframes fade-in {
+    100% {
+        opacity: 1;
+    }
+}

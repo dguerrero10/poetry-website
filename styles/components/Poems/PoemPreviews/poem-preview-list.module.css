@@ -1,0 +1,51 @@
+.poem-prev {
+    opacity: 0;
+    padding: 4rem;
+    animation: fade-in .6s ease-in forwards;
+}
+
+.poem-prev__header {
+    color:  #E91C23;
+    margin-left: 2rem;
+    padding-bottom: 1rem;
+}
+
+.poem-prev__list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(300px, 1fr));
+    column-gap: 2rem;
+    width: 100%;
+}
+
+.skeleton__container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 250px;
+    padding: 2rem;
+    border-left: 1px solid #dfdfdf;
+}
+
+.skeleton__header {
+    width: 30%;
+    min-width: 250px;
+    max-width: 300px;
+}
+
+.skeleton__para {
+    width: 40%;
+    min-width: 350px;
+    max-width: 400px;
+}
+
+.skeleton__para-alt {
+    width: 35%;
+    min-width: 300px;
+    max-width: 350px;
+}
+
+@keyframes fade-in {
+    100% {
+        opacity: 1;
+    }
+}

@@ -1,0 +1,70 @@
+.poem {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.poem__wrapper {
+    opacity: 0;
+    width: 50%;
+    min-width: 600px;
+    display: flex;
+    flex-direction: column;
+    padding: 6rem;
+    border-left: 1px solid rgb(214, 210, 210);
+    border-right: 1px solid rgb(214, 210, 210);
+    animation: fade-in .8s ease forwards;
+}
+
+.poem__back--row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 1rem;
+    cursor: pointer;
+}
+
+.poem__back--btn {
+    font-style: italic;
+    margin-top: -1px;
+    font-size: .8em;
+    color: #131212;
+    margin-bottom: 0;
+    margin-left: 6px;
+}
+
+.poem__title {
+    font-size: 1.3em;
+    color: #131212;
+}
+
+.poem__content {
+    display: flex;
+    flex-direction: column;
+}
+
+.skeleton__header {
+    width: 40%;
+    min-width: 300px;
+}
+
+.skeleton__para {
+    width: 60%;
+    min-width: 350px;
+    max-width: 600px;
+    padding: 5px 0;
+}
+
+.skeleton__para-alt {
+    width: 55%;
+    min-width: 300px;
+    max-width: 400px;
+    padding: 5px 0;
+}
+
+@keyframes fade-in {
+    100% {
+        opacity: 1;
+    }
+}
