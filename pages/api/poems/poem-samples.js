@@ -1,6 +1,6 @@
-const { connectToDatabase } = require('../../lib/mongodb');
+const { connectToDatabase } = require('../../../lib/mongodb');
 
-import { htmlContentParser } from  '../../helpers/htmlContentParser';
+import { htmlContentParser } from  '../../../helpers/htmlContentParser';
 
 async function poemSampleHandler (req, res) {
     let { db } = await connectToDatabase();
@@ -13,17 +13,17 @@ async function poemSampleHandler (req, res) {
 
             poems.forEach(poem => {
                 let parsedContent = htmlContentParser(poem.content).trim() + '...';
-                poemSamples.push({title: poem.title, sample: parsedContent});
+                poemSamples.push({ title: poem.title, sample: parsedContent });
             });
 
             return res.status(200).json({ success: true, poemSamples: poemSamples });
 
-        } catch(err) {
-            return res.status(500).json({ error: err })
+        } catch(error) {
+            return res.status(500).json({ error: error })
         }
     }
 
-    return res.status(500).json({ success: false, message: 'Invalid request.' });
+    return res.status(500).json({ success: false, message: 'Something went wrong.' });
 }
 
 export default poemSampleHandler

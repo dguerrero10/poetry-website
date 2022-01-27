@@ -49,3 +49,38 @@
         opacity: 1;
     }
 }
+
+@media screen and (max-width: 1100px) {
+    .poem-prev {
+        padding: 2rem;
+    }
+}
+
+@media screen and (max-width: 960px) {
+    .poem-prev__list {
+        grid-template-columns: repeat(3, minmax(200px, 1fr));
+    }    
+}
+
+@media screen and (max-width: 790px) {
+    .poem-prev__header {
+        margin-left: 1rem;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .poem-prev {
+        padding: 1rem;
+    }
+    .poem-prev__list {
+        grid-template-columns: repeat(2, minmax(200px, 1fr));
+    }    
+}
+
+@media screen and (max-width: 560px) {
+    .poem-prev__list {
+        grid-template-columns: repeat(1, minmax(200px, 1fr));
+    }    
+}
+
+

@@ -37,8 +37,32 @@
     color: #e91c23;
 }
 
+.poem-list__item--action-row {
+    width: 100%;
+    margin: 1.5rem;
+    padding-right: 3rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+}
+
 @keyframes fade-in {
     100% {
         opacity: 1;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .poem-list__item {
+        padding: 1.5rem 2.5rem;
+    }
+
+    .poem-list__item--title {
+        font-size: 1.1em;
+    }
+    
+    .poem-list__item--content {
+        font-size: .9em;
     }
 }

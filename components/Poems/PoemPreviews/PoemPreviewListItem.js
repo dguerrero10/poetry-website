@@ -14,7 +14,7 @@ function PoemPreviewListItem({ title, content }) {
             <h2 onClick={() => router.push(`/poems/${title}`)} 
                 className={classes['poem-prev__item--title']}>{title}</h2>
             <p className={classes['poem-prev__item--content']}>{intro}</p>
-            <Link href={`poems/${title}`}>
+            <Link href={`poems/${title}`} passHref>
                 <a className={classes['poem-prev__item--link']}>Read more</a>
             </Link>
         </div>

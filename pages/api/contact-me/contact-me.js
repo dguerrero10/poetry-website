@@ -1,6 +1,8 @@
 const { connectToDatabase } = require('../../../lib/mongodb');
 
 async function contactMeHandler(req, res) { 
+    let { db } = await connectToDatabase();
+
     let regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
     if (req.method === 'POST') {
@@ -16,24 +18,21 @@ async function contactMeHandler(req, res) {
         }
 
         try {
-            const client = await MongoClient.connect("mongodb+srv://dguerreroAdmin:RAlRPm6J0OMO2uFP@cluster0.pnvnk.mongodb.net/PoetryWebsite?retryWrites=true&w=majority")
-            const db = client.db();
-    
-            const emailExists = await db.collection('messages').findOne({'email': email});
+            const emailExists = await db.collection('messages').findOne( {'email': email });
     
             if (emailExists) {
                 return res.status(422).json({ success: false, message: 'You have already sent a message!' });
             }
     
-            await db.collection('messages').insertOne({email: email, message: message})
+            await db.collection('messages').insertOne({ 'email': email, 'message': message });
             return res.status(201).json({ success: true, message: 'Thank you for submitting your email!' });
 
-        } catch (err) {
-            return res.status(500).json({error: err})
+        } catch (error) {
+            return res.status(500).json({ success: false,  error: error })
         }
     }
     
-    return res.status(500).json({ success: false, message: 'Invalid request.' });
+    return res.status(500).json({ success: false, message: 'Something went wrong.' });
 }
 
 export default contactMeHandler

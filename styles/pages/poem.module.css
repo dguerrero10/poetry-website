@@ -14,7 +14,7 @@
     padding: 6rem;
     border-left: 1px solid rgb(214, 210, 210);
     border-right: 1px solid rgb(214, 210, 210);
-    animation: fade-in .8s ease forwards;
+    animation: fade-in .6s ease-in-out forwards;
 }
 
 .poem__back--row {
@@ -37,11 +37,6 @@
 .poem__title {
     font-size: 1.3em;
     color: #131212;
-}
-
-.poem__content {
-    display: flex;
-    flex-direction: column;
 }
 
 .skeleton__header {
@@ -68,3 +63,33 @@
         opacity: 1;
     }
 }
+
+@media screen and (max-width: 500px) {
+    .poem__wrapper {
+        width: 80%;
+        min-width: 400px;
+        padding: 2rem;
+    }    
+}
+
+@media screen and (max-width: 420px) {
+    .poem__wrapper {
+        border-left: none;
+        border-right: none;
+    }    
+}
+
+@media screen and (max-width: 420px) {
+    .poem__wrapper {
+        width: 100%;
+        min-width: 320px;
+    }
+    
+    .poem__title {
+        font-size: 1.1em;
+    }
+    
+    .poem__content {
+        font-size: .9em;
+    }    
+}    

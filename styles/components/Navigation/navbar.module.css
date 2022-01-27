@@ -1,20 +1,26 @@
 .navbar {
+    position: relative;
     width: 100%;
+    max-width: 1800px;
     height: 80px;
     display: flex;
     flex-direction: row;
     justify-content: center;
+    align-content: center;
     background-color: rgb(243, 243, 243);
     border-bottom: 1px solid rgb(214, 210, 210);
 }
 
 .navbar__list {
+    opacity: 0;
     padding: 2rem;
     width: 60%;
     min-width: 500px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    animation: fade-in-left .6s ease forwards;
+
 }
 
 .navbar__list--item {
@@ -24,4 +30,58 @@
     text-transform: uppercase;
     text-decoration: none;
     color: #161515;
+    transition: color .3s ease-in-out;
+}
+
+.navbar__list--item:hover {
+    color: #e91c23;
+}
+
+.navbar__list--item-active {
+    font-size: .8em;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #161515;
+    text-decoration: underline;
+}
+
+.logout__btn {
+    font-family: 'Ubuntu', sans-serif;
+    opacity: 0;
+    display: flex;
+    align-self: center;
+    letter-spacing: 1px;
+    cursor: pointer;
+    padding: 8px 12px;
+    max-width: 200px;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    background-color: #161515;
+    border-radius: 4px;
+    color: rgb(243, 243, 243);
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    transition: background-color .25s;
+    animation: fade-in-right .6s ease forwards;
+}
+
+.logout__btn:active {
+    background-color: #242222;
+}
+
+@keyframes fade-in-right {
+    0% {
+        transform: translateX(45px);
+    }
+
+    100% { opacity: 1; }
+}
+
+@keyframes fade-in-left {
+    0% {
+        transform: translateX(-45px);
+    }
+
+    100% { opacity: 1; }
 }

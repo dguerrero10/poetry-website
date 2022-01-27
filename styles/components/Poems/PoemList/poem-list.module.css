@@ -39,3 +39,10 @@
     min-width: 400px;
     max-width: 600px;
 }
+
+@media screen and (max-width: 540px) {
+    .poem-list__searchbar {
+        width: 40%;
+        min-width: 300px;
+    }
+}

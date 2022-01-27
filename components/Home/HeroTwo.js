@@ -7,13 +7,8 @@ function HeroTwo() {
         <section className={classes['hero-two']}>
             <div className={classes['hero-two__container']}>
             <div className={classes['hero-two__img-container']}>
-                <Image 
-                    src='/assets/images/embrace.jpg'
-                    alt='universe'
-                    objectFit="cover"
-                    priority
-                    width={450}
-                    height={450} />
+            <img className={classes['hero-two__img']} 
+                 src="/assets/images/embrace.jpg" />
             <p className={classes['painting-credit']}>
                 <span className={classes['painting-name']}>Embrace</span> by Pablo Picasso
             </p>

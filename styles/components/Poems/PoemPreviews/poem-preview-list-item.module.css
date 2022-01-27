@@ -36,3 +36,31 @@
 .poem-prev__item--link:hover {
     color: #e91c23;
 }
+
+@media screen and (max-width: 800px) {
+    .poem-prev__item {
+        padding: 1rem;
+    }
+}
+
+@media screen and (max-width: 560px) {
+    .poem-prev__item {
+        border-left: none;
+        border-bottom:  1px solid #dfdfdf;
+    }
+
+    .poem-prev__item--link {
+        bottom: 20%;
+    }    
+}
+
+@media screen and (max-width: 340px) {
+    .poem-prev__item--link {
+        bottom: 8%;
+    }
+    
+    .poem-prev__item--title {
+        margin-top: 0;
+    }
+}
+

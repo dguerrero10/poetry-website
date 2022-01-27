@@ -14,6 +14,7 @@
     margin-top: -2rem;
     color: #fff;
     font-style: italic;
+    text-align: center;
 }
 
 .hero-one__sample-poem--title {
@@ -29,5 +30,32 @@
 @keyframes fade-in {
     100% {
         opacity: 1;
+    }
+}
+
+@media screen and (max-width: 960px) {
+    .hero-one__sample-poem {
+        width: 70%;
+    }
+
+    .hero-one__sample-poem--title {
+        bottom: 20%;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .hero-one {
+        height: 420px;
+    } 
+    
+    .hero-one__sample-poem {
+        margin-top: -4rem;
+        font-size: 1.3em; 
+        padding: 1rem; 
+    }
+    
+    .hero-one__sample-poem--title {
+        bottom: 20%;
+        font-size: 1.2em;  
     }
 }

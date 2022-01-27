@@ -1,9 +1,9 @@
 import { forwardRef, Fragment, useState } from 'react';
+import { signIn, useSession } from 'next-auth/client';
 
 import classes from '../../styles/components/ContactMe/contact-form.module.css';
 
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
+import { TextField } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
 import Snackbar from '@mui/material/Snackbar';
 import IconButton from '@mui/material/IconButton';
@@ -16,10 +16,15 @@ const Alert = forwardRef(function Alert(props, ref) {
 });
 
 function ContactForm() {
+    const [session, loading] = useSession();
+
+    const [isAdmin, setIsAdmin] = useState(false);
+
     const [enteredEmail, setEnteredEmail] = useState('');
     const [enteredMessage, setEnteredMessage] = useState('');
+    const [enteredPassword, setEnteredPassword] = useState('');
 
-    const [emailError, setEmailError] = useState({ error: false, errorMessage: '' });
+    const [emailError, setEmailError] = useState({ error: false, errorMsg: '' });
     const [messageError, setMessageError] = useState(false);
 
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -30,11 +35,11 @@ function ContactForm() {
     });
 
     const handleEmailInput = (event) => {
-        setEnteredEmail(event.target.value);
-    }
+        if (event.target.value.trim() === 'daveabdouguerrero@gmail.com') {
+            setIsAdmin(isAdmin => !isAdmin);
+        }
 
-    const handleMessageInput = (event) => {
-        setEnteredMessage(event.target.value);
+        setEnteredEmail(event.target.value);
     }
 
     const handleClose = (event, reason) => {
@@ -48,72 +53,74 @@ function ContactForm() {
         }));
     };
 
-    const validateForm = (email, message) => {
-        let invalid = false;
+    const regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
-        if (!email.trim().length) {
+    const isFormValid = () => {
+        let isValid = true;
+
+        if (!enteredEmail.trim().length) {
             setEmailError((prevState) => ({
                 ...prevState,
                 error: true,
-                errorMessage: 'Email is invalid.'
+                errorMsg: 'Email is invalid.'
             }));
-            invalid = true;
+
+            isValid = false;
         }
 
-        if (!message.trim().length) {
-            setMessageError(true);
-            invalid = true;
-        }
-
-        let regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-
-        if (!email.trim().length || !email.match(regexEmail)) {
+        if (!enteredEmail.match(regexEmail)) {
             setEmailError((prevState) => ({
                 ...prevState,
                 error: true,
-                errorMessage: 'Email is invalid.'
+                errorMsg: 'Email is invalid.'
             }));
 
-            invalid = true;
+            isValid = false;
         }
 
-        if (message.trim().length < 1) {
-            setMessageError(true);
+        if (!enteredMessage.trim().length) {
+            setMessageError(messageError => !messageError);
 
-            invalid = true;
+            isValid = false;
         }
 
-        return invalid;
+        return isValid;
     }
 
     const contactMeHandler = async (event) => {
         event.preventDefault();
 
-        setIsSubmitting(true);
+        setIsSubmitting(isSubmitting => !isSubmitting);
+
+        if (enteredEmail === 'daveabdouguerrero@gmail.com') {
+            try {
+                const result = await signIn('credentials', {
+                    redirect: false,
+                    email: enteredEmail,
+                    password: enteredPassword
+                });
+                if (!result.error) return;
+            } catch (err) { return setIsSubmitting(isSubmitting => !isSubmitting); };
+        }
 
         setEmailError((prevState) => ({
             ...prevState,
             error: false,
-            errorMessage: ''
+            errorMsg: ''
         }));
 
         setMessageError(false);
 
-        if (validateForm(enteredEmail, enteredMessage)) {
-            setIsSubmitting(false);
-            return;
-        }
+        if (!isFormValid()) return setIsSubmitting(isSubmitting => !isSubmitting);
 
         try {
-            const response = await fetch('/api/contact', {
+            const response = await fetch('/api/contact-me/contact-me', {
                 method: 'POST',
                 body: JSON.stringify({ email: enteredEmail, message: enteredMessage }),
                 headers: {
                     'Content-Type': 'application/json'
                 }
             });
-
-            setIsSubmitting(false);
 
             let data = await response.json();
 
@@ -130,8 +137,15 @@ function ContactForm() {
             }));
 
         } catch (error) {
-            console.log(error)
+            setResponseState((prevState) => ({
+                ...prevState,
+                snackbarIsOpen: true,
+                success: error.success,
+                message: error.error
+            }));
         }
+
+        setIsSubmitting(isSubmitting => !isSubmitting);
     }
 
     const action = (
@@ -149,35 +163,58 @@ function ContactForm() {
 
     return (
         <div className={classes['contact-form__container']}>
-            <h2 className={classes['contact-form__header']}>Send Me a Message</h2>
-            <p className={classes['contact-form__para']}>I'll get back to you as soon as I can.</p>
-            <form onSubmit={contactMeHandler}
+            {!isAdmin && !session && <Fragment>
+                <h1 className={classes['contact-form__header']}>Send me a message.</h1>
+                <p className={classes['contact-form__para']}>Thank you for visiting my site.
+                    I hope you enjoyed my writing. Send me a message and I&apos;ll get back to you as soon as I can.
+                    Also, if you enter the right email there is a suprise. You know who you are.</p>
+            </Fragment>
+            }
+            {isAdmin && !session && <Fragment>
+                <h1 className={classes['contact-form__header']}>Login</h1>
+                <p className={classes['contact-form__para']}>Feeling inspired today?</p>
+            </Fragment>}
+            {session && <Fragment>
+                <h1 className={classes['contact-form__header--logged-in']}>Hi, Dave. You&apos;re logged in.</h1>
+            </Fragment>}
+            {!session && <form onSubmit={contactMeHandler}
                 className={classes['contact-form']}>
                 <div className={classes['contact-form__field']}>
                     <TextField error={emailError.error}
-                        helperText={emailError && emailError.errorMessage}
+                        helperText={emailError && emailError.errorMsg}
                         className={classes['contact-form__input']}
                         value={enteredEmail}
                         onChange={handleEmailInput}
                         label="Email" variant="filled" />
                 </div>
                 <div className={classes['contact-form__field']}>
-                    <TextField className={classes['contact-form__input']}
+                    {!isAdmin && <TextField className={classes['contact-form__input']}
                         error={messageError}
                         helperText={messageError && 'Please provide a message of at least 40 characters.'}
                         multiline
                         rows={4}
                         value={enteredMessage}
-                        onChange={handleMessageInput}
+                        onChange={
+                            (event) => setEnteredMessage(event.target.value)
+                        }
                         label="Message" variant="filled" />
+                    }
+                    {isAdmin && <TextField
+                        className={classes['contact-form__input']}
+                        type="password"
+                        value={enteredPassword}
+                        onChange={
+                            (event) => setEnteredPassword(event.target.value)
+                        }
+                        label="Password" variant="filled" />
+                    }
                 </div>
-                {!isSubmitting && <Button disableElevation
-                    type="submit"
-                    variant="contained">Submit</Button>}
+                {!isSubmitting && <button className={classes['contact-form__submit-btn']}
+                    type="submit">Submit</button>}
                 {isSubmitting && <Box sx={{ display: 'flex', justifyContent: 'center' }}>
                     <CircularProgress />
                 </Box>}
-            </form>
+            </form>}
             {!responseState.success && <Snackbar
                 anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
                 open={responseState.snackbarIsOpen} autoHideDuration={2000}

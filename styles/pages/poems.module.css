@@ -42,3 +42,22 @@
         opacity: 1;
     }
 }
+
+@media screen and (max-width: 960px) {
+    .poems__container {
+        width: 100%;
+    }    
+}
+
+@media screen and (max-width: 600px) {
+    .poems__container {
+        min-width: 400px;
+    }    
+}
+
+@media screen and (max-width: 540px) {
+    .poems__container {
+        padding: 0;
+        min-width: 320px;
+    }    
+}

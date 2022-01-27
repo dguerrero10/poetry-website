@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import PoemPreviewListItem from "./PoemPreviewListItem";
 
@@ -6,29 +6,23 @@ import classes from '../../../styles/components/Poems/PoemPreviews/poem-preview-
 
 import Skeleton from '@mui/material/Skeleton';
 import Typography from '@mui/material/Typography';
+import useAPI from "../../../hooks/use-api";
 
 function PoemPreviewList() {
     const [poems, setPoems] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
 
-    const fetchPoemsHandler = useCallback(async () => {
-        try {
-            const response = await fetch('/api/poem-preview');
-            let data = await response.json();
-            setPoems(data.poems);
-            setIsLoading(false);
-        } catch (error) {
-            console.log(error)
-        }
-    }, []);
+    const { isLoading, sendRequest: fetchPoems } = useAPI();
 
     useEffect(() => {
-        fetchPoemsHandler();
+        const lambda = data => setPoems(data.poems);
+        fetchPoems(
+            { url: '/api/poems/poem-preview' },
+            lambda
+        )
         return () => {
             setPoems([]);
-            setIsLoading(null);
         }
-    }, [fetchPoemsHandler]);
+    }, [fetchPoems]);
 
     return (
         <div className={classes['poem-prev']}>
@@ -46,7 +40,7 @@ function PoemPreviewList() {
                             <Typography variant="p">{isLoading ? <Skeleton /> : 'p'}</Typography>
                         </div>
                     </div>)}
-                {!isLoading && poems.map(poem => <PoemPreviewListItem key={poem._id}
+                {!isLoading && poems?.map(poem => <PoemPreviewListItem key={poem._id}
                     title={poem.title}
                     content={poem.content} />)}
             </div>
